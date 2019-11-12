@@ -1,0 +1,24 @@
+Informacje do algorytmu Strassena:
+
+O algorytmie: https://pl.wikipedia.org/wiki/Algorytm_Strassena
+
+Metody znajdujące się w pliku strassen.py:
+* dodawanie - dodawanie macierzy
+* odejmowanie - odejmowanie macierzy
+* strassen - algorytm strassena
+
+Funkcje metod:
+- metoda dodawanie zwraca macierz C, która jest wynikiem dodawania macierzy A i B
+- metoda odejmowanie zwraca macierz C, która jest wynikiem odejmowania macierzy B od A
+- metoda strassen:
+    - 29 linia kodu - if l_c == 2: - stosowanie metody Strassena dla macierzy 2x2, ze względu na gotowe wartości liczbowe podmacierzy
+    - 47 linia kodu - else:
+        #1 - utworzeni macierzy zerowych (an11, an12, itd.) w celu podziału macierzy wejścia na 4 mniejsze macierze i przypisaniu odpowiednich wartości
+        #2 - dzielenie macierzy na 4 podmacierze - wycinamy mniejsze macierze z większej macierzy np. A, tak by listy odpowiednio „symulowały” tymczasowe wartości mniejszych macierzy: A11, A12, A21, A22 - macierz jest przepołowiona tzn. że do A11 i A12 trafiają wartości z pierwszej połowy macierzy, do A11 wartości z pierwszej części przepołowionych list, do A12 pozostałe. Odpowiednio jest dla drugiej połowy macierzy, do A21 - pierwsza część z przepołowionych list, do A22 druga część.
+        #3 - ponieważ w przypadku dużych macierzy po podziale nadal nie mamy gotowych wartości do podmacierzy M, musimy zasymulować dalsze kroki algorytmu Strassena na mniejszych macierzach korzystając z funkcji dodawanie i odejmowanie, a następnie ponownie odwoływać się do metody strassen, by macierze były zmniejszane aż do rozmiarów 2x2 dając odpowiedni wynik ich mnożenia, czyli C, które zwracane posłuży do dalszych kroków poprzedniego wywołania metody strassen ---- rekurencja
+        #4 - wyrażenie macierzy C (C11, C12, C21, C22) w zależności od posiadanych M - dane ze wzorów
+        #5 - odpowiednie umiejscowienie wartości w macierzy C, ze względu na stosowaną technikę dzielenia
+
+Wnioski:
+
+Zaimplementowany kod algorytmu Strassena, nie ukazuje opłacalności jego wykorzystania do obliczania wyniku mnożenia macierzy w porównaniu z mnożeniem z definicji. Jest to zapewne wynik zastosowania techniki z przypisywaniem danych na nowe zmienne, które należy pamiętać i ponownie się do nich odwoływać. Należałby zoptymalizować kod eliminując czynniki wpływające na zwiększenie czasu potrzebnego do przeprowadzania obliczeń, tak by został faktycznie ukazany pozytywny wpływ algorytmu przy przeprowadzaniu działań na dużych macierzach (N>8).
